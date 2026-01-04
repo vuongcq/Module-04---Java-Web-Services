@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+</head>
+<body>
+<div class="container">
+
+    <h1>Sửa Thông Tin Sách</h1>
+    <form action="/books/edit/${book.id}" method="post">
+        <c:if test="${not empty message}">
+            <div style="color: red; text-align: center;">
+                ${message}
+            </div>
+        </c:if>
+        <input type="hidden" name="id" value="${book.id}">
+        <label for="title">Tiêu Đề:</label>
+        <input type="text" name="title" value="${book.title}" id="title"  required /><br/>
+        <label for="author">Tác Giả:</label>
+        <input type="text" name="author" value="${book.author}" id="author" required /><br/>
+        <label for="price">Giá:</label>
+        <input type="text" name="price" id="price" value="${book.price}" required /><br/>
+        <input type="submit" value="Cập Nhật" />
+    </form>
+    <a href="/books" class="btn">Quay Lại</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+<c:if test="${not empty message}">
+    <script>
+        alert("${message}")
+    </script>
+</c:if>
+<div class="container">
+    <h1>Danh Sách Sách</h1>
+    <form action="/books" method="get" class="search-form">
+        <input type="text" name="search" value="${search}" placeholder="Tìm kiếm sách..." required />
+        <input type="submit" value="Tìm" />
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tiêu Đề</th>
+            <th>Tác Giả</th>
+            <th>Giá</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${books}" var="book">
+            <tr>
+                <td>${book.id}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.price}</td>
+                <td>
+                    <a href="/books/edit/${book.id}">Sửa</a>
+                    <a href="/books/delete/${book.id}" onclick="return confirm('bạn có chắc chắn muốn xóa sách này không ?')">Xóa</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <a href="/books/add" class="btn">Thêm Sách</a>
+
+
+</div>
+</body>
+</html>
